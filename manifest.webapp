@@ -1,0 +1,17 @@
+{
+  "name": "SnapStack",
+  "description": "An HTML5 photo sharing app",
+  "launch_path": "/app.html",
+  "icons": {
+    "128": "/img/icon-128.png"
+  },
+  "permissions": {
+    "storage": {"description" : "store session token for user login"},
+    "geolocation":{"description": "Required for detecting user location"}
+  },
+  "developer": {
+    "name": "StackMob",
+    "url": "http://www.stackmob.com"
+  },
+  "default_locale": "en"
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+    <title>SnapStack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- jQuery Mobile styles -->
+    <!--<link rel="stylesheet" href="js/libs/jqm/jquery.mobile-1.3.0.css"/>-->
+
+    <link rel="stylesheet" href="js/libs/jqm/themes/snapstack.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" /> 
+
+    <!-- Fix for scrolling on iOS prior to iOS 6 -->
+    <style type="text/css">
+        .scrollable > * {
+            -webkit-transform: translateZ(0px);
+        }
+        .camera {
+          background-image: url("js/libs/jqm/themes/images/86-camera.png");
+          background-size: 28px 22px;
+          background-repeat: no-repeat;
+          background-position: center top 4px;
+        }
+      }
+    </style>
+    <!-- Referencing PhoneGap JS -->
+    <!-- <script src="phonegap.js"></script>-->
+    <script data-main="js/main" src="js/libs/require/require.js"></script>
+</head>
+<body>
+<div id="container"/>
+</body>
+</html>

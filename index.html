@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+    <title>Install SnapStack for FireFox OS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+
+
+<button id="install">
+  Install SnapStack on your homescreen!
+</button>
+ 
+<script>
+(function(){
+  function install(ev) {
+    ev.preventDefault();
+    // define the manifest URL
+    var manifest_url = "http://dev.firefoxos.stackmob339.stackmobapp.com/manifest.webapp";
+    // install the app
+    var myapp = navigator.mozApps.install(manifest_url);
+    myapp.onsuccess = function(data) {
+      // App is installed, remove button
+      this.parentNode.removeChild(this);
+    };
+    myapp.onerror = function() {
+      // App wasn't installed, info is in this.error.name
+      console.log('Install failed, error: ' + this.error.name);
+     };
+  };
+  // get a reference to the button and call install() on click
+  var button = document.getElementById('install');
+  button.addEventListener('click', install, false);
+})();
+</script>
+
+
+</body>
+</html>
