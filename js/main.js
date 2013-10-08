@@ -9,7 +9,6 @@ require.config({
     'jquery.mobile': 'libs/jqm/jquery.mobile-1.3.0',
     underscore: 'libs/underscore/underscore-1.4.4',
     backbone: 'libs/backbone/backbone-1.0.0-min',
-    'facebook' : 'http://connect.facebook.net/en_US/all',
     stackmob: 'libs/stackmob/stackmob-js-0.9.2',
     stackmobinit: 'stackmob-init',
     templates: '../templates',
@@ -30,13 +29,6 @@ require.config({
         deps: ['jquery','underscore','backbone','stackmob'],
         exports: "StackMobInit"
       },
-
-      facebook : {
-        exports: 'fb'
-      },
-
-
-
       underscore: {
         exports: '_'
       },

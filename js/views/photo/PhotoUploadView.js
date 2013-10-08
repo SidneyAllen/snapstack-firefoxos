@@ -16,7 +16,8 @@ define([
       events: {  
         "click .logout": "logout",
         "click .saveBtn": "save",
-        "click .selectImageBtn": "selectImage"
+        "click .selectImageBtn": "selectImage",
+         "keypress .title":  "onEnter"
       },
 
       initialize: function() {
@@ -35,6 +36,7 @@ define([
 
         var content = el.find(":jqmData(role='content')");
         content.append(template());
+ 
         return this;
       },
 
@@ -47,13 +49,20 @@ define([
           var reader = new FileReader();
           reader.readAsDataURL(image.blob);//Convert the blob from clipboard to base64
           reader.onload = function(event){
-            console.log(event.target.result);
+            
             imageData = event.target.result;
             var base64Content = imageData.substring(imageData.indexOf(',') + 1, imageData.length);
             var fileType = imageData.substring(imageData.lastIndexOf(":")+1,imageData.lastIndexOf(";"));
-            var fileName = "someImage.png";
+            var fileName = "newImage.png";
+
+            $(".latest img").attr("src", imageData).fadeIn();
+            $(".latest img").attr("data-base64", base64Content);
+            $(".latest img").attr("data-name", fileName);
+            $(".latest img").attr("data-type", fileType);
+
+
             
-            $("#imageUpload").attr("src", imageData);
+            //$("#imageUpload").attr("src", imageData);
            };
         };
         
@@ -64,24 +73,29 @@ define([
         return this;
       },
 
+      onEnter: function(e) {
+        if (e.keyCode == 13) {
+          this.save(e); 
+        }
+      },
+
       save: function(e) {
         e.preventDefault();
+
+
   
         var item = $('#addForm').serializeObject(),
             self = this;
 
-        var c = document.getElementById("myCanvas");
-        var imageData = c.toDataURL();
-        var base64Content = imageData.substring(imageData.indexOf(',') + 1, imageData.length);
-        var fileType = imageData.substring(imageData.lastIndexOf(":")+1,imageData.lastIndexOf(";"));
-        var fileName = "someImage.png";
+        var base64Content = $(".latest img").attr("data-base64");
+        var fileName = $(".latest img").attr("data-name");
+        var fileType = $(".latest img").attr("data-type");
         
         $.mobile.loading( 'show', {
             text: "Signing Up!",
             textVisible: true,
             theme: "b"
         });
-
 
         // Create a new instance of the photo model and populate it
         // with your form data.
@@ -94,14 +108,7 @@ define([
         photo.create({
           success: function(model, result, options) {
 
-            $("#image-presenter").empty();
-            var c = document.getElementById("myCanvas");
-            c.width = "300px";
-            c.height = "300px";
-
-            var ctx = c.getContext("2d");
-            ctx.clearRect(0, 0, c.width, c.height);
-
+            $(".latest img").attr("src","");
             $('#title').val("");
 
             // Add new item to your collection
