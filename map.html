@@ -11,23 +11,24 @@
 
 <script>
 $(document).ready(function(){
-findMyCurrentLocation();
+showCurrentLocation();
 
 });
  
 function findMyCurrentLocation(){
 var geoService = navigator.geolocation;
 if (geoService) {
+	console.log("GEO SERVICE")
 navigator.geolocation.getCurrentPosition(showCurrentLocation,errorHandler,{enableHighAccuracy:true});
 } else {
 alert("Your Browser does not support GeoLocation.");
 }
 }
  
-function showCurrentLocation(position){
-alert(position.coords.latitude + "," + position.coords.longitude);
+function showCurrentLocation(){
+alert(37.77218900879787,-122.4064996013827);
 //Create the latlng object based on the GPS Position retrieved
-var latlng = new google.maps.LatLng (position.coords.latitude, position.coords.longitude);
+var latlng = new google.maps.LatLng (37.77218900879787,-122.4064996013827);
 //Set Google Map options
 var options = {
 zoom : 15,
@@ -35,10 +36,8 @@ center : latlng,
 mapTypeId : google.maps.MapTypeId.ROADMAP
 };
 
-
- 
 var $content = $("#map-page");
-alert($content);
+
 
 //Set the height of the div containing the Map to rest of the screen
 $content.height(screen.height - 50);
