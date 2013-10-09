@@ -12,13 +12,12 @@
 <script>
 $(document).ready(function(){
 findMyCurrentLocation();
-alert("Doc ready")
+
 });
  
 function findMyCurrentLocation(){
 var geoService = navigator.geolocation;
 if (geoService) {
-	alert("geo service")
 navigator.geolocation.getCurrentPosition(showCurrentLocation,errorHandler,{enableHighAccuracy:true});
 } else {
 alert("Your Browser does not support GeoLocation.");
