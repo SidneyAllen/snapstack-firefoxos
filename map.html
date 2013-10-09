@@ -74,9 +74,9 @@ function receiveMessage(event)
   console.log(event.data);
 
   photos = JSON.parse(event.data);
-
+  console.log(photos);
   for (var i = 0; i < photos.length; i++) {
-  	console.log(photos[i]["location"]);
+  	console.log(photos[i]["location"]["lat"]);
   	/*
          var marker = new google.maps.Marker({
              position: new google.maps.LatLng(hotels[i][1], hotels[i][2]),
