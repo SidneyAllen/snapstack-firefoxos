@@ -118,7 +118,7 @@ define([
       },
 
       savePhoto : function(photo,self) {
-        alert("Save")
+
         // Call the create method to save your data at stackmob
         photo.create({
           success: function(model, result, options) {

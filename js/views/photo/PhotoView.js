@@ -6,7 +6,11 @@ define([
 ], function($, HomeTemplate, PhotoListView, StackMob){
   
   var PhotoView = Backbone.View.extend({
-      className: "photo",   
+      className: "photo", 
+
+      events: {
+        "click #send" : "send"
+      }, 
       
       initialize: function(options) {
         this.collection = this.options.collection;
@@ -22,11 +26,22 @@ define([
         var content = el.find(":jqmData(role='content')");
         content.empty();
 
-        content.append('<iframe src="http://dev.firefoxos.stackmob.stackmobapp.com/map.html" width="290" height="377" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:1px; border-color:#333; background:#FFF; border-style:solid;"></iframe>')
-        var listView = new PhotoListView({collection: this.collection});
+        content.append('<button id="send">Send</button><br><iframe id="mapIframe" src="http://dev.firefoxos.stackmob.stackmobapp.com/map.html" width="290" height="377" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:1px; border-color:#333; background:#FFF; border-style:solid;"></iframe>')
+        
+
+        //var listView = new PhotoListView({collection: this.collection});
         //content.append(listView.render().el);
 
         return this;
+      },
+
+      send : function(){
+        var mapIframe = document.getElementById('mapIframe');
+        
+
+        var json = {payload:'Hello World'};
+        mapIframe.contentWindow.postMessage(JSON.stringify(json), '*');
+
       }
 
   });

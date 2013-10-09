@@ -26,37 +26,49 @@ alert("Your Browser does not support GeoLocation.");
 }
  
 function showCurrentLocation(){
-alert(37.77218900879787,-122.4064996013827);
-//Create the latlng object based on the GPS Position retrieved
-var latlng = new google.maps.LatLng (37.77218900879787,-122.4064996013827);
-//Set Google Map options
-var options = {
-zoom : 15,
-center : latlng,
-mapTypeId : google.maps.MapTypeId.ROADMAP
-};
+	//Create the latlng object based on the GPS Position retrieved
+	var latlng = new google.maps.LatLng (37.77218900879787,-122.4064996013827);
+		//Set Google Map options
+		var options = {
+		zoom : 15,
+		center : latlng,
+		mapTypeId : google.maps.MapTypeId.ROADMAP
+	};
 
-var $content = $("#map-page");
+	var $content = $("#map-page");
 
+	//Set the height of the div containing the Map to rest of the screen
+	$content.height(screen.height - 50);
+	//Display the Map
 
-//Set the height of the div containing the Map to rest of the screen
-$content.height(screen.height - 50);
-//Display the Map
-
-alert("Do the map")
-var map = new google.maps.Map ($content[0], options);
- 
- 
-//Create the Marker and Drop It
-new google.maps.Marker ({ map : map,
-animation : google.maps.Animation.DROP,
-position : latlng
-});
+	alert("Do the map")
+	var map = new google.maps.Map ($content[0], options);
+	
+	/*
+	for (var i = 0; i < hotels.length; i++) {
+         var marker = new google.maps.Marker({
+             position: new google.maps.LatLng(hotels[i][1], hotels[i][2]),
+             map: map,
+           //  icon: image,
+             title: hotels[i][0],
+             zIndex: hotels[i][3]
+         });
+     }
+     */
+	//Create the Marker and Drop It
+	new google.maps.Marker ({ map : map,
+		animation : google.maps.Animation.DROP,
+		position : latlng
+	});
 }
  
 function errorHandler(error){
 alert("Error while retrieving current position. Error code: " + error.code + ",Message: " + error.message);
 }
+
+this.addEventListener('message', function(event) {
+            alert(JSON.parse(event.data));
+     }, false);
 
 </script>
 

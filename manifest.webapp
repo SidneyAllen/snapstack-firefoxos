@@ -1,6 +1,7 @@
 {
   "version" : "0.1",
   "name": "SnapStack",
+  "type": "privileged",
   "description": "An HTML5 photo sharing app",
   "launch_path": "/app.html",
   "icons": {
@@ -11,6 +12,7 @@
     "name": "StackMob",
     "url": "http://www.stackmob.com"
   },
+
   "permissions": {
     "geolocation": {
       "description": "Needed to tell the user where they are"
