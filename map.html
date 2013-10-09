@@ -25,7 +25,7 @@ alert("Your Browser does not support GeoLocation.");
 }
  
 function showCurrentLocation(position){
-console.log(position.coords.latitude + "," + position.coords.longitude);
+alert(position.coords.latitude + "," + position.coords.longitude);
 //Create the latlng object based on the GPS Position retrieved
 var latlng = new google.maps.LatLng (position.coords.latitude, position.coords.longitude);
 //Set Google Map options
@@ -34,12 +34,17 @@ zoom : 15,
 center : latlng,
 mapTypeId : google.maps.MapTypeId.ROADMAP
 };
+
+
  
 var $content = $("#map-page");
- 
+alert($content);
+
 //Set the height of the div containing the Map to rest of the screen
 $content.height(screen.height - 50);
 //Display the Map
+
+alert("Do the map")
 var map = new google.maps.Map ($content[0], options);
  
  
