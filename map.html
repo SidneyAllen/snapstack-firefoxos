@@ -72,6 +72,24 @@ function receiveMessage(event)
 {
   console.log(event.origin);
   console.log(event.data);
+
+  photos = JSON.parse(event.data);
+
+  for (var i = 0; i < photos.length; i++) {
+  	console.log(photos[i]["location"]);
+  	/*
+         var marker = new google.maps.Marker({
+             position: new google.maps.LatLng(hotels[i][1], hotels[i][2]),
+             map: map,
+           //  icon: image,
+             title: hotels[i][0],
+             zIndex: hotels[i][3]
+         });
+*/
+   }
+     
+
+
 }
 </script>
 

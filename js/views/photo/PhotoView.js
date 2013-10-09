@@ -37,10 +37,8 @@ define([
 
       send : function(){
         var mapIframe = document.getElementById('mapIframe');
-        
 
-        var json = {payload:'Hello World'};
-        mapIframe.contentWindow.postMessage(JSON.stringify(json), '*');
+        mapIframe.contentWindow.postMessage(JSON.stringify(this.collection.toJSON()), '*');
 
       }
 
