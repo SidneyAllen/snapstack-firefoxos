@@ -70,7 +70,8 @@ window.addEventListener('message', receiveMessage, false);
 
 function receiveMessage(event)
 {
-  alert(event.origin);
+  console.log(event.origin);
+  console.log(event.data);
 }
 </script>
 
