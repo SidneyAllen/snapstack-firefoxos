@@ -55,11 +55,7 @@ function showCurrentLocation(){
          });
      }
      */
-	//Create the Marker and Drop It
-	new google.maps.Marker ({ map : map,
-		animation : google.maps.Animation.DROP,
-		position : latlng
-	});
+	
 }
  
 function errorHandler(error){
@@ -78,19 +74,22 @@ function receiveMessage(event)
   for (var i = 0; i < photos.length; i++) {
   	console.log(photos[i]["location"]["lat"]);
   	console.log(photos[i]["location"]["lon"]);
-  	/*
-         var marker = new google.maps.Marker({
-             position: new google.maps.LatLng(hotels[i][1], hotels[i][2]),
-             map: map,
-           //  icon: image,
-             title: hotels[i][0],
-             zIndex: hotels[i][3]
-         });
-*/
-   }
+  	
+	  var marker = new google.maps.Marker({
+	       position: new google.maps.LatLng(photos[i]["location"]["lat"], photos[i]["location"]["lon"]),
+	       map: map,
+	     //  icon: photos[i]["location"]["photo"],
+	       title: photos[i]["location"]["title"],
+	       zIndex: hotels[i][3]
+	  });
+  }
+
+  //Create the Marker and Drop It
+	new google.maps.Marker ({ map : map,
+		animation : google.maps.Animation.DROP,
+		position : latlng
+	});
      
-
-
 }
 </script>
 
