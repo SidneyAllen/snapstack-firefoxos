@@ -11,5 +11,10 @@
     "name": "StackMob",
     "url": "http://www.stackmob.com"
   },
+  "permissions": {
+    "geolocation": {
+      "description": "Needed to tell the user where they are"
+      }
+  },
   "default_locale": "en"
 }

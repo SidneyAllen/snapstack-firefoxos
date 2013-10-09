@@ -10,7 +10,9 @@ define([
   var LoginView = Backbone.View.extend({
       className : 'loginView',
       events: {  
-        "click #submitLogin": "login"
+        "click #submitLogin": "login", 
+        "keypress .usernameLogin":  "onEnter",
+        "keypress .passwordLogin":  "onEnter"
       },
 
       initialize: function() {
@@ -27,6 +29,16 @@ define([
         self.$el.attr("data-theme","b");      
              
         return this;
+      },
+
+      onEnter: function(e) {
+
+        if (e.keyCode == 13) {
+          console.log("press")
+          e.preventDefault();
+          $(".usernameLogin").blur();
+          $(".passwordLogin").blur();
+        }
       },
 
       login: function(e) {
@@ -68,7 +80,6 @@ define([
                 self.collection.comparator = function(photo) {
                   return -photo.get("createddate");
                 };
-
 
                 self.router.navigate("#photoupload", {trigger: true},'photoupload');   
 

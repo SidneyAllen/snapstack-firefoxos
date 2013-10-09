@@ -6,15 +6,12 @@ define([
   'models/photo/PhotoModel',
   'text!templates/home/homeTemplate.html',
   'text!templates/photo/photoUploadTemplate.html',
-  'router',
-  'libs/app/util',
-  'imagefit'
-], function($,_,Backbone, Stackmob,PhotoModel, HomeTemplate, PhotoUploadTemplate, Router, Util,imagefit){
+  'router'
+], function($,_,Backbone, Stackmob,PhotoModel, HomeTemplate, PhotoUploadTemplate, Router){
 
   var PhotoUploadView = Backbone.View.extend({
       className: "photoupload",   
       events: {  
-        "click .logout": "logout",
         "click .saveBtn": "save",
         "click .selectImageBtn": "selectImage",
          "keypress .title":  "onEnter"
@@ -60,9 +57,6 @@ define([
             $(".latest img").attr("data-name", fileName);
             $(".latest img").attr("data-type", fileType);
 
-
-            
-            //$("#imageUpload").attr("src", imageData);
            };
         };
         
@@ -74,16 +68,16 @@ define([
       },
 
       onEnter: function(e) {
+
         if (e.keyCode == 13) {
-          this.save(e); 
+          e.preventDefault();
+          $(".title").blur();
         }
       },
 
       save: function(e) {
         e.preventDefault();
 
-
-  
         var item = $('#addForm').serializeObject(),
             self = this;
 
@@ -92,7 +86,7 @@ define([
         var fileType = $(".latest img").attr("data-type");
         
         $.mobile.loading( 'show', {
-            text: "Signing Up!",
+            text: "Saving Photo!",
             textVisible: true,
             theme: "b"
         });
@@ -104,6 +98,27 @@ define([
           photo.setBinaryFile("photo", fileName, fileType, base64Content);
         }
 
+        //GET GEOLOCATION FOR PHOTO
+        if ("geolocation" in navigator) {
+          /* geolocation is available */
+          console.log("geolocation available");
+          navigator.geolocation.getCurrentPosition(function(position) {
+            //alert(position.coords.latitude + " AND " + position.coords.longitude);
+            var latlon = new StackMob.GeoPoint(position.coords.latitude,position.coords.longitude); //lat, lon
+            photo.set("location", latlon.toJSON());
+            self.savePhoto(photo,self);
+          });
+        } else {
+          /* geolocation IS NOT available */
+          console.log("geolocation fail");
+        }
+
+      
+        return this;
+      },
+
+      savePhoto : function(photo,self) {
+        alert("Save")
         // Call the create method to save your data at stackmob
         photo.create({
           success: function(model, result, options) {
@@ -131,12 +146,7 @@ define([
           }
         });
 
-        return this;
-      },
-      
-      logout: function(e) {
-        Util(this.$el).setLoginLogoutButton(this.$el,"photoupload"); 
-        return this;
+
       }
     });
 

@@ -9,10 +9,13 @@
     <!--<link rel="stylesheet" href="js/libs/jqm/jquery.mobile-1.3.0.css"/>-->
 
     <link rel="stylesheet" href="js/libs/jqm/themes/snapstack.css" />
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" /> 
+    <link rel="stylesheet" href="js/libs/jqm/jquery.mobile.structure-1.3.2.min.css" /> 
 
     <!-- Fix for scrolling on iOS prior to iOS 6 -->
     <style type="text/css">
+    .ui-dialog .ui-header a[data-icon=delete] {
+  display: none;
+}
         .scrollable > * {
             -webkit-transform: translateZ(0px);
         }
@@ -27,6 +30,8 @@
     <!-- Referencing PhoneGap JS -->
     <!-- <script src="phonegap.js"></script>-->
     <script data-main="js/main" src="js/libs/require/require.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+
 </head>
 <body>
 <div id="container"/>

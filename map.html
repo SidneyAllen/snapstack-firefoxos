@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>External Map</title>
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+
+<script>
+$(document).ready(function(){
+findMyCurrentLocation();
+
+});
+ 
+function findMyCurrentLocation(){
+var geoService = navigator.geolocation;
+if (geoService) {
+navigator.geolocation.getCurrentPosition(showCurrentLocation,errorHandler,{enableHighAccuracy:true});
+} else {
+alert("Your Browser does not support GeoLocation.");
+}
+}
+ 
+function showCurrentLocation(position){
+console.log(position.coords.latitude + "," + position.coords.longitude);
+//Create the latlng object based on the GPS Position retrieved
+var latlng = new google.maps.LatLng (position.coords.latitude, position.coords.longitude);
+//Set Google Map options
+var options = {
+zoom : 15,
+center : latlng,
+mapTypeId : google.maps.MapTypeId.ROADMAP
+};
+ 
+var $content = $("#map-page");
+ 
+//Set the height of the div containing the Map to rest of the screen
+$content.height(screen.height - 50);
+//Display the Map
+var map = new google.maps.Map ($content[0], options);
+ 
+ 
+//Create the Marker and Drop It
+new google.maps.Marker ({ map : map,
+animation : google.maps.Animation.DROP,
+position : latlng
+});
+}
+ 
+function errorHandler(error){
+alert("Error while retrieving current position. Error code: " + error.code + ",Message: " + error.message);
+}
+
+</script>
+
+</head>
+<body>
+  	<div id="map-canvas"></div>
+<!-- Start of the second page that shows the map #map-page -->
+<div id="map-page" >
+ 
+</div>
+ 
+</body>
+</html>

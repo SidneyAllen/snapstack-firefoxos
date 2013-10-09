@@ -84,8 +84,6 @@ define([
     },
 
     logout:function(e) {
-      //this.whisperCollection.reset();
-
       this.navigate("#",{ trigger : true});
     },
 
@@ -128,31 +126,6 @@ define([
       Util(page).setNavBar(navLabel);
       
       var index = ['photo','photoupload','profile'].indexOf(className);
- 
-      // Update the login/logout button in header for specific pages
-      /*
-      if(index >= 0) {
-
-        var loginStatus = StackMob.isLoggedIn();
-        // Add login/logout button
-        if(loginStatus) {
-          $('.login').remove();
-          var content = $(page).find(":jqmData(role='header')");
-          var logoutView = new LogoutButtonView();
-          
-          content.append(logoutView.render().el);
-        } else {
-          var content = $(page).find(":jqmData(role='header')");
-          var loginButton = new LoginButtonView();
-          content.append(loginButton.render().el);
-        } 
-
-        $('#photoView').trigger('create');
-        $('#profileView').trigger('create');
-        $('#photoUploadView').trigger('create');
-
-      }
-      */
     }, 
 
   });
@@ -160,11 +133,12 @@ define([
   var initialize = function(){
 
     var photoCollection = new PhotoCollection();
-    photoCollection.fetch({async: false});
+    photoCollection.fetch({async: true});
+    /*
     photoCollection.comparator = function(photo) {
       return -photo.get("createddate");
     };
-
+  */
     var app_router = new AppRouter({collection: photoCollection});
 
     Backbone.history.start();

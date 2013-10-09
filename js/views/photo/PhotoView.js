@@ -2,19 +2,12 @@ define([
   'jquery',
   'text!templates/home/homeTemplate.html',
   'views/photo/PhotoListView',
-  'views/home/LogoutButtonView',
-  'views/home/LoginButtonView',
-  'libs/app/util',
   'stackmobinit'
-], function($, HomeTemplate, PhotoListView, LogoutButtonView,LoginButtonView, Util, StackMob){
+], function($, HomeTemplate, PhotoListView, StackMob){
   
   var PhotoView = Backbone.View.extend({
       className: "photo",   
       
-      events: {   
-        "click .logout": "logout"
-      },
-
       initialize: function(options) {
         this.collection = this.options.collection;
       },
@@ -29,14 +22,10 @@ define([
         var content = el.find(":jqmData(role='content')");
         content.empty();
 
+        content.append('<iframe src="http://localhost:4567/map.html" width="377" height="377" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:2px; border-color:#333; background:#FFF; border-style:solid;"></iframe>')
         var listView = new PhotoListView({collection: this.collection});
         content.append(listView.render().el);
 
-        return this;
-      },
-
-      logout: function(e) {
-        Util(this.$el).setLoginLogoutButton(this.$el,"photo");
         return this;
       }
 
