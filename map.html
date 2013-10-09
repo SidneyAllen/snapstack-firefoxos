@@ -66,10 +66,12 @@ function errorHandler(error){
 alert("Error while retrieving current position. Error code: " + error.code + ",Message: " + error.message);
 }
 
-this.addEventListener('message', function(event) {
-            alert(JSON.parse(event.data));
-     }, false);
+window.addEventListener('message', receiveMessage, false);
 
+function receiveMessage(event)
+{
+  alert(event.origin);
+}
 </script>
 
 </head>
