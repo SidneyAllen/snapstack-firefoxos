@@ -41,20 +41,7 @@ function showCurrentLocation(){
 	$content.height(screen.height - 50);
 	//Display the Map
 
-	alert("Do the map")
 	map = new google.maps.Map ($content[0], options);
-	
-	/*
-	for (var i = 0; i < hotels.length; i++) {
-         var marker = new google.maps.Marker({
-             position: new google.maps.LatLng(hotels[i][1], hotels[i][2]),
-             map: map,
-           //  icon: image,
-             title: hotels[i][0],
-             zIndex: hotels[i][3]
-         });
-     }
-     */
 	
 }
  
@@ -78,7 +65,7 @@ function receiveMessage(event)
 	  var marker = new google.maps.Marker({
 	       position: new google.maps.LatLng(photos[i]["location"]["lat"], photos[i]["location"]["lon"]),
 	       map: map,
-	     //  icon: photos[i]["location"]["photo"],
+	       icon: photos[i]["location"]["photo"],
 	       title: photos[i]["location"]["title"],
 	       zIndex: zIndex
 	  });
