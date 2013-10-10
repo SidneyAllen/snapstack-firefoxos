@@ -34,13 +34,19 @@ function initialize() {
 	
 	//Set Google Map options
 	var mapOptions = {
-		zoom : 12,
+		zoom : 15,
 		center : latlng,
 		mapTypeId : google.maps.MapTypeId.ROADMAP
 	};
 
-  map = new google.maps.Map(document.getElementById('map-canvas'),
-      mapOptions);
+  
+	var $content = $("#map-page");
+
+	//Set the height of the div containing the Map to rest of the screen
+	$content.height(screen.height - 50);
+	//Display the Map
+
+	map = new google.maps.Map ($content[0], mapOptions);
 }
 
 
