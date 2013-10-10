@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "com.stackmob.hollagramjs"
+        versionCode="10" 
+        version   = "1.0.3">
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Hollagram HTML5</name>
+
+    <description>
+        Holla Everyone!
+    </description>
+
+    <author href="https://www.stackmob.com" email="sid@stackmob.com">
+        Sid Maestre
+    </author>
+
+</widget>

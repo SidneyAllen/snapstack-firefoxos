@@ -1,0 +1,24 @@
+  <form  method="post" id="profileForm">
+  <!--
+  <input type="file" id="photo" data-role="button" class="imagePickerSignup"  accept="image/*;capture=camera">
+
+  <div class="latest">
+    <img width="200px">
+  </div>
+-->
+
+  <label>username</label>
+  <input type="text" value="<%= username %>" disabled="true" class="usernameProfile"/>
+ 
+  <label>email</label>
+  <input type="text" placeholder="email" name="email" required="true"  autocapitalize="off" autocorrect="off" value="<%= email %>" class="emailProfile" />
+  
+  <input type="submit" id="saveBtn" class="large button"  value="Update" />
+  <br/>
+  <a href="#logout" data-role="button">Logout</a>
+  <% if (loginwithfacebook) { %>
+    <a href="#unlink" data-role="button">Unlink Facebook</a>
+  <% } else { %>
+    <a href="#password" data-role="button">Change Password</a>
+  <% } %>
+</form>
