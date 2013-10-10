@@ -137,7 +137,7 @@ define([
         setTimeout(function(){
           var mapIframe = document.getElementById('mapIframe');
           mapIframe.contentWindow.postMessage(JSON.stringify(self.collection.toJSON()), '*');
-        }, 4000);
+        }, 10);
       }
         
 

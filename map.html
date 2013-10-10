@@ -28,13 +28,14 @@ function findMyCurrentLocation(){
 google.maps.visualRefresh = true;
 
 var map;
+var photos
 function initialize() {
   //Create the latlng object based on the GPS Position retrieved
 	var latlng = new google.maps.LatLng (37.77218900879787,-122.4064996013827);
 	
 	//Set Google Map options
 	var mapOptions = {
-		zoom : 12,
+		zoom : 14,
 		center : latlng,
 		mapTypeId : google.maps.MapTypeId.ROADMAP
 	};
@@ -47,11 +48,13 @@ function initialize() {
 	//Display the Map
 
 	map = new google.maps.Map ($content[0], mapOptions);
+
+	console.log(photos)
 }
 
 
 google.maps.event.addDomListener(window, 'load', initialize);
-
+/*
 function showCurrentLocation(){
 
 
@@ -73,7 +76,7 @@ function showCurrentLocation(){
 	map = new google.maps.Map ($content[0], options);
 	
 }
- 
+*/
 function errorHandler(error){
 alert("Error while retrieving current position. Error code: " + error.code + ",Message: " + error.message);
 }
