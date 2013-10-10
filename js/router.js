@@ -111,7 +111,7 @@ define([
           this.firstPage = false;
       }
 
-      var removeIndex = ['password','profile'].indexOf(className);
+      var removeIndex = ['password','profile','map'].indexOf(className);
  
       if(removeIndex >= 0) {
         page.remove();
@@ -137,7 +137,7 @@ define([
         setTimeout(function(){
           var mapIframe = document.getElementById('mapIframe');
           mapIframe.contentWindow.postMessage(JSON.stringify(self.collection.toJSON()), '*');
-        }, 10);
+        }, 4000);
       }
         
 

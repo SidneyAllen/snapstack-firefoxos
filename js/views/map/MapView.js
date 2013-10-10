@@ -7,7 +7,7 @@ define([
 ], function($,_,Backbone, Stackmob,MapTemplate){
   
   var MapView = Backbone.View.extend({
-      className : 'mapView',
+      className : 'map',
       events : {
         "click #refreshBtn" : "refresh"
       },

@@ -10,9 +10,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
 
 <script>
-$(document).ready(function(){
-	//showCurrentLocation();
-});
+
  /*
 function findMyCurrentLocation(){
 	var geoService = navigator.geolocation;
@@ -26,7 +24,7 @@ function findMyCurrentLocation(){
 */
 
 google.maps.visualRefresh = true;
-
+var map;
 function initialize() {
 	console.log("initialize")
   //Create the latlng object based on the GPS Position retrieved
@@ -48,37 +46,10 @@ function initialize() {
 
 	map = new google.maps.Map ($content[0], mapOptions);
 
-	console.log(photos)
 }
 
 
 google.maps.event.addDomListener(window, 'load', initialize);
-/*
-function showCurrentLocation(){
-
-
-	//Create the latlng object based on the GPS Position retrieved
-	var latlng = new google.maps.LatLng (37.77218900879787,-122.4064996013827);
-	//Set Google Map options
-	var options = {
-		zoom : 15,
-		center : latlng,
-		mapTypeId : google.maps.MapTypeId.ROADMAP
-	};
-
-	var $content = $("#map-page");
-
-	//Set the height of the div containing the Map to rest of the screen
-	$content.height(screen.height - 50);
-	//Display the Map
-
-	map = new google.maps.Map ($content[0], options);
-	
-}
-*/
-function errorHandler(error){
-alert("Error while retrieving current position. Error code: " + error.code + ",Message: " + error.message);
-}
 
 window.addEventListener('message', receiveMessage, false);
 
