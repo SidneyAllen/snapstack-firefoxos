@@ -11,21 +11,44 @@
 
 <script>
 $(document).ready(function(){
-showCurrentLocation();
-
+	//showCurrentLocation();
 });
- 
+ /*
 function findMyCurrentLocation(){
-var geoService = navigator.geolocation;
-if (geoService) {
-	console.log("GEO SERVICE")
-navigator.geolocation.getCurrentPosition(showCurrentLocation,errorHandler,{enableHighAccuracy:true});
-} else {
-alert("Your Browser does not support GeoLocation.");
+	var geoService = navigator.geolocation;
+	if (geoService) {
+		console.log("GEO SERVICE")
+		navigator.geolocation.getCurrentPosition(showCurrentLocation,errorHandler,{enableHighAccuracy:true});
+	} else {
+		alert("Your Browser does not support GeoLocation.");
+	}
 }
+*/
+
+google.maps.visualRefresh = true;
+
+var map;
+function initialize() {
+  //Create the latlng object based on the GPS Position retrieved
+	var latlng = new google.maps.LatLng (37.77218900879787,-122.4064996013827);
+	
+	//Set Google Map options
+	var mapOptions = {
+		zoom : 12,
+		center : latlng,
+		mapTypeId : google.maps.MapTypeId.ROADMAP
+	};
+
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
 }
- 
+
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
 function showCurrentLocation(){
+
+
 	//Create the latlng object based on the GPS Position retrieved
 	var latlng = new google.maps.LatLng (37.77218900879787,-122.4064996013827);
 	//Set Google Map options
@@ -76,17 +99,14 @@ function receiveMessage(event)
 		animation : google.maps.Animation.DROP,
 		position : latlng
 	});
+
      
 }
 </script>
 
 </head>
 <body>
-  	<div id="map-canvas"></div>
-<!-- Start of the second page that shows the map #map-page -->
-<div id="map-page" >
- 
-</div>
- 
+  <div id="map-canvas"></div>
+	<div id="map-page" ></div>
 </body>
 </html>

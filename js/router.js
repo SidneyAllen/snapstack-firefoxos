@@ -13,8 +13,9 @@ define([
   'views/login/LoginView',
   'views/home/LogoutButtonView',
   'views/home/LoginButtonView',
-  'collections/photo/PhotoCollection'
-], function($, StackMob, Util, WelcomeView, PhotoView, PhotoUploadView, PhotoDetailView, ProfileView, PasswordView, SignupView, LoginView, LogoutButtonView,LoginButtonView, PhotoCollection) {
+  'views/map/MapView',
+  'collections/photo/PhotoCollection',
+], function($, StackMob, Util, WelcomeView, PhotoView, PhotoUploadView, PhotoDetailView, ProfileView, PasswordView, SignupView, LoginView, LogoutButtonView,LoginButtonView, MapView, PhotoCollection) {
   
   var AppRouter = Backbone.Router.extend({
     routes:{
@@ -26,7 +27,8 @@ define([
         "password":"password",
         "login":"login",
         "logout":"logout",
-        "signup":"signup"
+        "signup":"signup",
+        "map":"map"
     },
 
     initialize: function(options) {
@@ -47,6 +49,10 @@ define([
 
     photo:function(e) {
       this.changePage(new PhotoView({collection : this.collection, router : this}),'photo','Photo');
+    },
+
+    map:function(e) {
+      this.changePage(new MapView({collection : this.collection, router : this}),'map','Map');
     },
 
     photoupload:function(e) {
@@ -92,7 +98,7 @@ define([
     },
 
     changePage:function (view,className,navLabel,transition) { 
-      
+      var self = this;
       var page = $("." + className);
 
       if(transition === 'undefined') {
@@ -126,6 +132,15 @@ define([
       Util(page).setNavBar(navLabel);
       
       var index = ['photo','photoupload','profile'].indexOf(className);
+
+      if(className === 'map') {
+        setTimeout(function(){
+          var mapIframe = document.getElementById('mapIframe');
+          mapIframe.contentWindow.postMessage(JSON.stringify(self.collection.toJSON()), '*');
+        }, 4000);
+      }
+        
+
     }, 
 
   });

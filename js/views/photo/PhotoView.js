@@ -17,20 +17,20 @@ define([
       },
 
       render: function() {
-        var el = this.$el;
+        var self = this;
         
-        el.append(HomeTemplate);
-        el.attr("id","photoView");
+        self.$el.append(HomeTemplate);
+        self.$el.attr("id","photoView");
+
+        var header = self.$el.find(":jqmData(role='header')");
+        header.append('<a href="#map" data-role="button">map</a>');
 
         // add Shout List to content area
-        var content = el.find(":jqmData(role='content')");
+        var content = self.$el.find(":jqmData(role='content')");
         content.empty();
 
-        content.append('<button id="send">Send</button><br><iframe id="mapIframe" src="http://dev.firefoxos.stackmob.stackmobapp.com/map.html" width="290" height="377" marginwidth="0" marginheight="0" frameborder="no" scrolling="yes" style="border-width:1px; border-color:#333; background:#FFF; border-style:solid;"></iframe>')
-        
-
-        //var listView = new PhotoListView({collection: this.collection});
-        //content.append(listView.render().el);
+        var listView = new PhotoListView({collection: this.collection});
+        content.append(listView.render().el);
 
         return this;
       },
