@@ -35,6 +35,7 @@ require.config({
     }
 });
 
+
 require([
   'jquery',
   'jquery.mobile-config',
