@@ -55,13 +55,7 @@ window.addEventListener('message', receiveMessage, false);
 
 infowindow = new google.maps.InfoWindow();
 message = new Array();
-function showAnnotation(marker,content) {
-	alert("YES")
-	infowindow.close();
-	infowindow.setContent(content);
-	infowindow.open(map,marker);
-	 
-}
+photoArray = new Array();
 
 function receiveMessage(event)
 {
@@ -81,24 +75,15 @@ function receiveMessage(event)
 	       zIndex: zIndex
 	  });
 
-	  attachSecretMessage(marker, i, photos[i]["title"]);
-	  /*
-	  google.maps.event.addListener(marker, 'click', function(e) {
-	  console.log(marker.getPosition());		   
-		  var content = "foo";
-			
-		  showAnnotation(marker,content);
-		});
-*/
+	  attachMessage(marker, i, photos[i]["title"], photos[i]["photo"]);
   }
 
-  function attachSecretMessage(marker, num, title) {
+  function attachMessage(marker, num, title,photo) {
   		message.push(title);
-  		//alert(title);
+  		photoArray.push(photo);
 
-		  //var message = ['This', 'is', 'the', 'secret', 'message'];
 		  var infowindow = new google.maps.InfoWindow({
-		    content: message[num]
+		    content: "<img height='100px' src="+ photoArray[num] +"><br/>" + message[num];
 		  });
 
 		  google.maps.event.addListener(marker, 'click', function() {
@@ -106,14 +91,11 @@ function receiveMessage(event)
 		  });
 	}
 
-
   //Create the Marker and Drop It
 	new google.maps.Marker ({ map : map,
 		animation : google.maps.Animation.DROP,
 		position : latlng
 	});
-
-     
 }
 </script>
 
