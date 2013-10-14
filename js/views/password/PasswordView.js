@@ -5,13 +5,16 @@ define([
   'stackmob',
   'text!templates/home/homeTemplate.html',
   'text!templates/password/passwordTemplate.html',
-  'router'
-], function($,_,Backbone, Stackmob, HomeTemplate, PasswordTemplate, Router){
+  'router',
+  'libs/app/util'
+], function($,_,Backbone, Stackmob, HomeTemplate, PasswordTemplate, Router,Util){
 
-  var ProfileView = Backbone.View.extend({
+  var PasswordView = Backbone.View.extend({
       className: "password",   
       events: {  
-        "click #saveBtn": "save"
+        "click #submitPassword": "save", 
+        "keypress .oldPasswordLogin":  "onEnter",
+        "keypress .newPasswordLogin":  "onEnter"
       },
 
       initialize: function() {
@@ -29,11 +32,21 @@ define([
         return this;
       },
 
+      onEnter: function(e) {
+
+        if (e.keyCode == 13) {
+          console.log("press")
+          e.preventDefault();
+          $(".oldPasswordLogin").blur();
+          $(".newPasswordLogin").blur();
+        }
+      },
+
       save: function(e) {
         var self = this,
               item = Util('#passwordForm').serializeObject();
         e.preventDefault();
-
+        console.log("SAVE")
         var loginStatus = StackMob.isLoggedIn();
 
         if(!loginStatus) {
@@ -45,9 +58,9 @@ define([
             $.mobile.loading('hide');
           
           } else {
-            $('#saveBtn').attr('disabled',true);
+            $('#savePasswordBtn').attr('disabled',true);
 
-              var loadingMsg = "Updating Profile ...";
+              var loadingMsg = "Changing Password ...";
               StackMob.getLoggedInUser({
                 success: function(username) {
     
@@ -55,13 +68,13 @@ define([
                   user.resetPassword(item.oldpassword, item.newpassword, {
                     success: function(model){
                       $.mobile.loading('hide');
-                      $('#saveBtn').attr('disabled',false); 
+                      $('#savePasswordBtn').attr('disabled',false); 
                        self.router.navigate("#profile", {trigger: true});           
                     },
                     error: function(error){
                       alert("Error saving profile");
                       $.mobile.loading('hide');
-                      $('#saveBtn').attr('disabled',false);
+                      $('#savePasswordBtn').attr('disabled',false);
                     }
                   });
 
@@ -81,6 +94,6 @@ define([
       
     });
 
-  return ProfileView;
+  return PasswordView;
   
 });

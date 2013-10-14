@@ -12,7 +12,7 @@ define([
   var ProfileView = Backbone.View.extend({
       className: "profile",   
       events: {  
-        "click #saveBtn": "save",
+        "click #submitProfile": "save",
         "click .logout": "logout"
       },
 
