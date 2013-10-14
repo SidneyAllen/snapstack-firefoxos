@@ -77,7 +77,6 @@ function receiveMessage(event)
 	  var marker = new google.maps.Marker({
 	       position: new google.maps.LatLng(photos[i]["location"]["lat"], photos[i]["location"]["lon"]),
 	       map: map,
-	       icon: photos[i]["photo"],
 	       title: photos[i]["title"],
 	       zIndex: zIndex
 	  });
@@ -94,10 +93,10 @@ function receiveMessage(event)
   }
 
   function attachSecretMessage(marker, num, title) {
-  		//message.push(title);
-  		alert(title);
+  		message.push(title);
+  		//alert(title);
 
-		  var message = ['This', 'is', 'the', 'secret', 'message'];
+		  //var message = ['This', 'is', 'the', 'secret', 'message'];
 		  var infowindow = new google.maps.InfoWindow({
 		    content: message[num]
 		  });
