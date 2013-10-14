@@ -53,7 +53,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 window.addEventListener('message', receiveMessage, false);
 
-
+/*
 function showAnnotaction(marker,content) {
 
 	var infowindow = new google.maps.InfoWindow({
@@ -62,7 +62,7 @@ function showAnnotaction(marker,content) {
 
 	 infowindow.open(map,marker);
 }
-
+*/
 function receiveMessage(event)
 {
   console.log(event.origin);
@@ -85,12 +85,12 @@ function receiveMessage(event)
 
 	  google.maps.event.addListener(marker, 'click', function() {
 		  alert("Welcome to the 43201 zip code");
-		  
+		  /*
 		  var content = "<b>43201 Zip Code</b><br />The 43201 zip code is 
                home to Columbus' Victorian Village and Harrison 
                West neighborhoods.";
 		  showAnnotaction(marker,content);
-		  
+		  */
 		});
   }
 
