@@ -16,9 +16,6 @@
   "permissions": {
     "geolocation": {
       "description": "Needed to tell the user where they are"
-    },
-    "systemXHR": {
-      "description": "Required to make Network calls"
     }
   },
   "default_locale": "en"

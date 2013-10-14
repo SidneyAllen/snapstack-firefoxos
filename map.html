@@ -36,7 +36,6 @@ function initialize() {
 		center : latlng,
 		mapTypeId : google.maps.MapTypeId.ROADMAP
 	};
-
   
 	var $content = $("#map-page");
 
@@ -48,25 +47,21 @@ function initialize() {
 
 }
 
-
 google.maps.event.addDomListener(window, 'load', initialize);
 
 window.addEventListener('message', receiveMessage, false);
 
 infowindow = new google.maps.InfoWindow();
-message = new Array();
+messageArray = new Array();
 photoArray = new Array();
 
 function receiveMessage(event)
 {
-  console.log(event.origin);
-  console.log(event.data);
+  //console.log(event.data);
 
   photos = JSON.parse(event.data);
 
   for (var i = 0; i < photos.length; i++) {
-  	console.log(photos[i]["location"]["lat"]);
-  	console.log(photos[i]["location"]["lon"]);
   	zIndex = i + 1;
 	  var marker = new google.maps.Marker({
 	       position: new google.maps.LatLng(photos[i]["location"]["lat"], photos[i]["location"]["lon"]),
@@ -79,10 +74,10 @@ function receiveMessage(event)
   }
 
   function attachMessage(marker, num, title,photo) {
-  		message.push(title);
+  		messageArray.push(title);
   		photoArray.push(photo);
-  		var content ="<img height='100px' src='"+ photoArray[num] +"'><br/>" + message[num];
-		  console.log(content)
+  		var content ="<img height='100px' src='"+ photoArray[num] +"'><br/>" + messageArray[num];
+
 		  var infowindow = new google.maps.InfoWindow({
 		    content: content
 		  });
