@@ -84,7 +84,7 @@ function receiveMessage(event)
   		var content ="<img height='100px' src='"+ photoArray[num] +"'><br/>" + message[num];
 		  console.log(content)
 		  var infowindow = new google.maps.InfoWindow({
-		    content: content;
+		    content: content
 		  });
 
 		  google.maps.event.addListener(marker, 'click', function() {
