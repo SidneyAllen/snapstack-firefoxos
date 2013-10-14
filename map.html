@@ -82,14 +82,28 @@ function receiveMessage(event)
 	       zIndex: zIndex
 	  });
 
-
+	  attachSecretMessage(marker, i);
+	  /*
 	  google.maps.event.addListener(marker, 'click', function(e) {
 	  console.log(marker.getPosition());		   
 		  var content = "foo";
 			
 		  showAnnotation(marker,content);
 		});
+*/
   }
+
+  function attachSecretMessage(marker, num) {
+		  var message = ['This', 'is', 'the', 'secret', 'message'];
+		  var infowindow = new google.maps.InfoWindow({
+		    content: message[num]
+		  });
+
+		  google.maps.event.addListener(marker, 'click', function() {
+		    infowindow.open(marker.get('map'), marker);
+		  });
+	}
+
 
   //Create the Marker and Drop It
 	new google.maps.Marker ({ map : map,
