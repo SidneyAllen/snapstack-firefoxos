@@ -82,7 +82,7 @@ function receiveMessage(event)
 	       zIndex: zIndex
 	  });
 
-	  attachSecretMessage(marker, i);
+	  attachSecretMessage(marker, i, photos[i]["location"]["title"]);
 	  /*
 	  google.maps.event.addListener(marker, 'click', function(e) {
 	  console.log(marker.getPosition());		   
@@ -93,8 +93,9 @@ function receiveMessage(event)
 */
   }
 
-  function attachSecretMessage(marker, num) {
-		  var message = ['This', 'is', 'the', 'secret', 'message'];
+  function attachSecretMessage(marker, num, title) {
+  		var message.push(title);
+		  /*var message = ['This', 'is', 'the', 'secret', 'message'];*/
 		  var infowindow = new google.maps.InfoWindow({
 		    content: message[num]
 		  });
