@@ -85,13 +85,14 @@ function receiveMessage(event)
 	  });
 
 
-	  google.maps.event.addListener(marker, 'click', function(marker) {
+	  google.maps.event.addListener(marker, 'click', function() {
 		  alert("Welcome to the 43201 zip code");
 		  
 		  var content = "<b>43201 Zip Code</b><br />The 43201 zip code is 
                home to Columbus' Victorian Village and Harrison 
                West neighborhoods.";
-		  showAnnotation(marker,content);
+      console.log(marker)
+		  //showAnnotation(marker,content);
 		});
   }
 
