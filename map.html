@@ -77,12 +77,12 @@ function receiveMessage(event)
 	  var marker = new google.maps.Marker({
 	       position: new google.maps.LatLng(photos[i]["location"]["lat"], photos[i]["location"]["lon"]),
 	       map: map,
-	       icon: photos[i]["location"]["photo"],
-	       title: photos[i]["location"]["title"],
+	       icon: photos[i]["photo"],
+	       title: photos[i]["title"],
 	       zIndex: zIndex
 	  });
 
-	  attachSecretMessage(marker, i, photos[i]["location"]["title"]);
+	  attachSecretMessage(marker, i, photos[i]["title"]);
 	  /*
 	  google.maps.event.addListener(marker, 'click', function(e) {
 	  console.log(marker.getPosition());		   
