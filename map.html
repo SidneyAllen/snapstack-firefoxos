@@ -83,8 +83,9 @@ function receiveMessage(event)
 	  });
 
 
-	  google.maps.event.addListener(marker, 'click', function() {		   
-		  var content = photos[i]["location"]["title"];
+	  google.maps.event.addListener(marker, 'click', function(e) {
+	  console.log(e);		   
+		  var content = "foo";
 			
 		  showAnnotation(marker,content);
 		});
