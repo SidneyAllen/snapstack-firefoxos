@@ -53,8 +53,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 window.addEventListener('message', receiveMessage, false);
 
-infowindow = new google.maps.InfoWindow();
-
+//infowindow = new google.maps.InfoWindow();
+message = [];
 function showAnnotation(marker,content) {
 	alert("YES")
 	infowindow.close();
@@ -94,7 +94,7 @@ function receiveMessage(event)
   }
 
   function attachSecretMessage(marker, num, title) {
-  		var message.push(title);
+  		message.push(title);
 		  /*var message = ['This', 'is', 'the', 'secret', 'message'];*/
 		  var infowindow = new google.maps.InfoWindow({
 		    content: message[num]
