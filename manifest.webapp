@@ -3,7 +3,7 @@
   "name": "SnapStack",
   "type": "privileged",
   "description": "An HTML5 photo sharing app",
-  "launch_path": "/app.html",
+  "launch_path": "/index.html",
   "icons": {
     "60": "/img/icon-60.png",
     "128": "/img/icon-128.png"

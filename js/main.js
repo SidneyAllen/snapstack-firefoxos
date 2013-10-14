@@ -1,6 +1,6 @@
 
 require.config({
-  baseUrl: "/js/",
+  baseUrl: "js/",
   urlArgs: "bust=" + (new Date()).getTime(),
   paths: {
     jquery: 'libs/jquery/jquery-1.8.2',
