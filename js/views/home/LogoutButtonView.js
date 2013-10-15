@@ -13,6 +13,7 @@ define([
         this.render();
       },
 
+
       render: function() {
         var el = this.$el;
         var loginStatus = StackMob.isLoggedIn();

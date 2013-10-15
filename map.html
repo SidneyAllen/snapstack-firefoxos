@@ -55,8 +55,7 @@ infowindow = new google.maps.InfoWindow();
 messageArray = new Array();
 photoArray = new Array();
 
-function receiveMessage(event)
-{
+function receiveMessage(event) {
   //console.log(event.data);
 
   photos = JSON.parse(event.data);
@@ -71,20 +70,6 @@ function receiveMessage(event)
 	  });
 
 	  attachMessage(marker, i, photos[i]["title"], photos[i]["photo"]);
-  }
-
-  function attachMessage(marker, num, title,photo) {
-  		messageArray.push(title);
-  		photoArray.push(photo);
-  		var content ="<img height='100px' src='"+ photoArray[num] +"'><br/>" + messageArray[num];
-
-		  var infowindow = new google.maps.InfoWindow({
-		    content: content
-		  });
-
-		  google.maps.event.addListener(marker, 'click', function() {
-		    infowindow.open(marker.get('map'), marker);
-		  });
 	}
 
   //Create the Marker and Drop It
@@ -93,6 +78,21 @@ function receiveMessage(event)
 		position : latlng
 	});
 }
+
+function attachMessage(marker, num, title,photo) {
+  messageArray.push(title);
+  photoArray.push(photo);
+  var content ="<img height='100px' src='"+ photoArray[num] +"'><br/>" + messageArray[num];
+
+  var infowindow = new google.maps.InfoWindow({
+		content: content
+  });
+
+	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.open(marker.get('map'), marker);
+	});
+}
+
 </script>
 
 </head>
