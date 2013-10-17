@@ -23,9 +23,9 @@ define(['stackmob'], function(StackMob) {
 	} else {
 		// During development you'd want to user your Development API Key
 		StackMob.init({
-	    	publicKey:  "012963e7-dd06-4781-b0e8-6e13dfd6f337",
-	    	apiVersion: 1
-		}); 
+		    publicKey:  "20ede513-a51b-49c2-ad38-8148077cfaa7",
+		    apiVersion: 0
+		});
 		console.log('init dev for local (firefoxos, phoneGap, etc)');
 	}
 
